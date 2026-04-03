@@ -167,7 +167,26 @@ function draw() {
     }
     
     drawMatrix(board, {x:0, y:0});
+    
     if(currentPiece) {
+        // 도착할 바닥을 미리 보여주는 고스트 블록(Ghost Piece) 추가
+        const ghost = {
+            matrix: currentPiece.matrix,
+            pos: { x: currentPiece.pos.x, y: currentPiece.pos.y },
+            type: currentPiece.type
+        };
+        // 바닥에 닿을 때까지 가상으로 y 위치 증가
+        while (!collide(board, ghost)) {
+            ghost.pos.y++;
+        }
+        ghost.pos.y--; // 충돌 직전(완전한 바닥)으로 위치 확정
+        
+        // 반투명하게 고스트 그리기
+        ctx.globalAlpha = 0.2;
+        drawMatrix(ghost.matrix, ghost.pos);
+        ctx.globalAlpha = 1.0;
+        
+        // 진짜 블록 그리기
         drawMatrix(currentPiece.matrix, currentPiece.pos);
     }
 }
