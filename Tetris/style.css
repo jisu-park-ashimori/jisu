@@ -227,15 +227,15 @@ body {
 .mobile-controls {
     display: none; /* 기본적으로 데스크탑에서는 숨김 */
     flex-direction: column;
-    gap: 15px;
-    margin-top: 25px;
+    gap: 8px;
+    margin-top: 10px;
     width: 100%;
 }
 
 .control-row {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .control-row.center {
@@ -246,11 +246,11 @@ body {
     background: rgba(10, 10, 25, 0.8);
     border: 2px solid rgba(0, 255, 255, 0.4);
     color: #0ff;
-    font-size: 1.8rem;
-    padding: 10px;
+    font-size: 1.3rem;
+    padding: 5px;
     border-radius: 50%;
-    width: 65px;
-    height: 65px;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -266,11 +266,11 @@ body {
 }
 
 .long-btn {
-    width: 250px;
-    border-radius: 30px;
-    height: 60px;
+    width: 180px;
+    border-radius: 20px;
+    height: 40px;
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
@@ -278,31 +278,56 @@ body {
 @media screen and (max-width: 768px) {
     body {
         align-items: flex-start;
-        padding-top: 10px;
+        padding-top: 5px;
         overflow-y: auto; /* 작은 화면에서 스크롤 허용 */
     }
     
     .game-container {
         flex-direction: column;
         align-items: center;
-        padding: 15px;
-        gap: 15px;
+        padding: 5px;
+        gap: 8px;
         width: 100%;
-        max-width: 400px;
+        max-width: 100%;
     }
     
+    .main-screen {
+        /* 모바일에서 보드 영역을 더 강조 */
+        border-width: 1px;
+    }
+
+    #tetris-canvas {
+        max-width: 100%;
+        height: 50vh; /* 세로가 넘치지 않게 조절 */
+        object-fit: contain; /* 비율 유지 */
+    }
+
     .side-panel {
         flex-direction: row;
         width: 100%;
         flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 10px;
+        justify-content: center;
+        gap: 5px;
     }
     
     .panel-section {
         flex: 1;
-        min-width: 45%;
-        padding: 10px;
+        min-width: 30%;
+        padding: 5px;
+    }
+
+    .panel-section h3 {
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+    }
+
+    .neon-number {
+        font-size: 1.5rem;
+    }
+
+    #next-canvas {
+        width: 70px;
+        height: 70px;
     }
     
     .controls-section {
@@ -311,11 +336,5 @@ body {
     
     .mobile-controls {
         display: flex; /* 모바일에서 조작패드 표시 */
-    }
-    
-    /* 화면 높이가 낮을 경우 캔버스를 작게 조절할 수도 있지만 가로 맞춤으로 충분히 플레이 가능하도록 설정 */
-    #tetris-canvas {
-        max-width: 100%;
-        height: auto;
     }
 }
