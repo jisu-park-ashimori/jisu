@@ -385,3 +385,26 @@ document.getElementById('resume-btn').addEventListener('click', togglePause);
 
 // 폰트가 로딩되기 전에 쓰레기 렌더링으로 캔버스를 초기화해둡니다.
 draw();
+
+// 모바일 컨트롤 이벤트 바인딩
+const btnLeft = document.getElementById('btn-left');
+const btnRight = document.getElementById('btn-right');
+const btnUp = document.getElementById('btn-up');
+const btnDrop = document.getElementById('btn-drop');
+const btnHardDrop = document.getElementById('btn-harddrop');
+
+if (btnLeft) {
+    const bindControl = (element, callback) => {
+        if (!element) return;
+        // 터치 시 화면 스크롤이나 더블탭 확대를 방지하기 위해 preventDefault 적용
+        element.addEventListener('touchstart', (e) => { e.preventDefault(); callback(); }, {passive: false});
+        // 마우스 호환성을 위해 click 이벤트도 지원
+        element.addEventListener('click', (e) => { e.preventDefault(); callback(); });
+    };
+
+    bindControl(btnLeft, () => { if (gameMode === 'playing') playerMove(-1); });
+    bindControl(btnRight, () => { if (gameMode === 'playing') playerMove(1); });
+    bindControl(btnUp, () => { if (gameMode === 'playing') playerRotate(); });
+    bindControl(btnDrop, () => { if (gameMode === 'playing') playerDrop(); });
+    bindControl(btnHardDrop, () => { if (gameMode === 'playing') playerHardDrop(); });
+}

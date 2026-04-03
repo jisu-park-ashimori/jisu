@@ -220,3 +220,102 @@ body {
     font-weight: bold;
     text-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
 }
+
+/* -------------------------------------
+   모바일 전용 컨트롤 (반응형 대응)
+-------------------------------------- */
+.mobile-controls {
+    display: none; /* 기본적으로 데스크탑에서는 숨김 */
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.control-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.control-row.center {
+    justify-content: center;
+}
+
+.mobile-btn {
+    background: rgba(10, 10, 25, 0.8);
+    border: 2px solid rgba(0, 255, 255, 0.4);
+    color: #0ff;
+    font-size: 1.8rem;
+    padding: 10px;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2), inset 0 0 5px rgba(0, 255, 255, 0.2);
+    cursor: pointer;
+    user-select: none; /* 텍스트 선택 방지 */
+}
+
+.mobile-btn:active {
+    background: rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), inset 0 0 10px rgba(0, 255, 255, 0.5);
+    transform: scale(0.95);
+}
+
+.long-btn {
+    width: 250px;
+    border-radius: 30px;
+    height: 60px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* 화면 너비 768px 이하 모바일 환경 */
+@media screen and (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        padding-top: 10px;
+        overflow-y: auto; /* 작은 화면에서 스크롤 허용 */
+    }
+    
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .side-panel {
+        flex-direction: row;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    
+    .panel-section {
+        flex: 1;
+        min-width: 45%;
+        padding: 10px;
+    }
+    
+    .controls-section {
+        display: none; /* 모바일에서는 키보드 조작법을 숨김 */
+    }
+    
+    .mobile-controls {
+        display: flex; /* 모바일에서 조작패드 표시 */
+    }
+    
+    /* 화면 높이가 낮을 경우 캔버스를 작게 조절할 수도 있지만 가로 맞춤으로 충분히 플레이 가능하도록 설정 */
+    #tetris-canvas {
+        max-width: 100%;
+        height: auto;
+    }
+}
